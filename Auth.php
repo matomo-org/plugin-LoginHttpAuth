@@ -35,17 +35,16 @@ class Auth extends \Piwik\Plugins\Login\Auth
     {
         $httpLogin = $this->getHttpAuthLogin();
         if (!empty($httpLogin)) {
-            $hasSuperUser = Piwik::hasTheUserSuperUserAccess($httpLogin);
-            if ($hasSuperUser) {
-                return new AuthResult(AuthResult::SUCCESS_SUPERUSER_AUTH_CODE, $httpLogin, null);
-            }
-
             $model = new Model();
-            if ($model->userExists($httpLogin)) {
-                return new AuthResult(AuthResult::SUCCESS, $httpLogin, null);
+            $user  = $model->getUser($httpLogin);
+
+            if(empty($user)) {
+                return new AuthResult(AuthResult::FAILURE, $httpLogin, null);
             }
 
-            return new AuthResult(AuthResult::FAILURE, $httpLogin, null);
+            $code = !empty($user['superuser_access']) ? AuthResult::SUCCESS_SUPERUSER_AUTH_CODE : AuthResult::SUCCESS;
+            return new AuthResult($code, $httpLogin, $user['token_auth']);
+
         }
         return parent::authenticate();
     }
