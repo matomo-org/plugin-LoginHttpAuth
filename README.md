@@ -3,13 +3,14 @@
 ## Description
 
 This plugin extends the standard Piwik authentication to use Basic HTTP Authentication.
+It lets you login to Piwik using the HTTP Auth mechanism.
 
-## Installation
+How do I setup HTTP Auth using Piwik?
 
-* Login your Piwik as Super User. Click Settings. Click Marketplace.
+* Login your Piwik as Super User. Click Settings, then click Marketplace.
 * Install the LoginHttpAuth plugin, then click Activate.
 * Click Settings, then click Users.
-    * Create a user in Piwik for each user that should have access to Piwik.
+    * Check that there is a user in Piwik for each person that should have access to Piwik.
 * Enable HTTP Auth on the Piwik on your web server.
 
     For example, if you are using Apache webserver:
@@ -21,7 +22,7 @@ This plugin extends the standard Piwik authentication to use Basic HTTP Authenti
 
 ## Changelog
 
-* 1.0 First public release compatible [with Piwik 2](http://piwik.org/blog/2013/12/piwik-2-0-release-announced-biggest-best-release-yet/)
+ * 1.0 - First public release [compatible with Piwik 2](http://piwik.org/blog/2013/12/piwik-2-0-release-announced-biggest-best-release-yet/)
 
 ## License
 
