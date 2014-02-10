@@ -2,5 +2,17 @@
     "name": "LoginHttpAuth",
     "version": "1.0",
     "description": "This plugin lets you connect to Piwik using HTTP Auth protocol instead of the standard Login mechanism",
-    "theme": false
+    "require": {
+        "piwik": ">=2.0.4-b12"
+    },
+    "authors": [
+        {
+            "name": "Piwik",
+            "email": "hello@piwik.org",
+            "homepage": "http://piwik.org"
+        }
+    ],
+    "license": "GPL v3+",
+    "keywords": ["authentication", "httpAuth", "login"],
+    "homepage": "http://plugins.piwik.org/LoginHttpAuth"
 }
