@@ -1,0 +1,21 @@
+# This is a sample .htaccess file that will enable HTTP Authentication for your Piwik on apache server
+# To enable, move this file into the root of your Piwik folder, next to index.php and piwik.php
+
+# Restrict outside access
+# Replace the path below by the absolute path pointing to your htpasswd
+AuthUserFile /absolute/path/to/secure/folder/.htpasswd
+AuthGroupFile /dev/null
+AuthName "Piwik"
+AuthType Basic
+
+# All files by default require authentication...
+<Files "*">
+    Require valid-user
+</Files>
+
+# ... except piwik.php and piwik.js which do not require authentication
+<Files ~ "^piwik\.(js|php)|robots\.txt$">
+    Allow from all
+    Satisfy any
+</Files>
+

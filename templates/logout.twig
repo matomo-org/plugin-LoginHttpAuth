@@ -1,0 +1,42 @@
+<html>
+<head>
+    <meta http-equiv="refresh" content="7;url=index.php">
+    <script type="text/javascript">
+        function getXHR() {
+            try {
+                if (window.XMLHttpRequest) {
+                    xhr = new XMLHttpRequest();
+                } else if (window.ActiveXObject) {
+                    xhr = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+            } catch (e) {
+                xhr = false;
+            }
+            return xhr;
+        }
+
+        // To understand why we have to do this,
+        // see http://stackoverflow.com/questions/449788/http-authentication-logout-via-php/12866277#12866277
+
+        try {
+            var agt = navigator.userAgent.toLowerCase();
+            if (agt.indexOf("msie") != -1) {
+                // IE clear HTTP Authentication
+                document.execCommand("ClearAuthenticationCache");
+            } else {
+                var xhr = getXHR();
+                xhr.open("GET", "index.php?module=LoginHttpAuth&action=logmeout", true, "anonymous", "");
+                xhr.send("");
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == 4) {
+                        window.location.href = 'index.php';
+                    }
+                }
+            }
+        } catch (e) {
+        }
+
+    </script>
+</head>
+<body></body>
+</html>
