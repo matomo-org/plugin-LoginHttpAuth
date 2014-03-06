@@ -13,13 +13,11 @@ use Piwik\View;
 
 class Controller extends \Piwik\Plugins\Login\Controller
 {
-    // Auth realm that must be defined in the .htaccess file
-    const AUTH_NAME = 'Piwik';
-
     public function logmeout()
     {
         // Effectively log out of Http auth
-        header('WWW-Authenticate: Basic realm="'. self::AUTH_NAME .'"');
+        $settings = new Settings('LoginHttpAuthPlugin');
+        header('WWW-Authenticate: Basic realm="'. $settings->authName->getValue() .'"');
         header('HTTP/1.0 401 Unauthorized');
         self::clearSession();
     }
