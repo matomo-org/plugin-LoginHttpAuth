@@ -17,5 +17,6 @@ AuthType Basic
 <Files ~ "^piwik\.(js|php)|robots\.txt$">
     Allow from all
     Satisfy any
+    Require all granted
 </Files>
 
