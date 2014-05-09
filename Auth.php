@@ -10,7 +10,6 @@ namespace Piwik\Plugins\LoginHttpAuth;
 
 use Piwik\AuthResult;
 use Piwik\DB;
-use Piwik\Piwik;
 use Piwik\Plugins\Login;
 use Piwik\Plugins\UsersManager\Model;
 
