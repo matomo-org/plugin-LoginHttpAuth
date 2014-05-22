@@ -16,7 +16,7 @@ How do I setup HTTP Auth using Piwik?
     For example, if you are using Apache webserver:
 
     * generate a .htpasswd file with your encrypted logins and passwords
-    * [copy this example .htaccess file](https://github.com/piwik/plugin-LoginHttpAuth/blob/master/TemplateHtaccess/.htaccess) in the root directory of Piwik, and set the path to your .htpasswd file
+    * [copy this example .htaccess file](https://raw.githubusercontent.com/piwik/plugin-LoginHttpAuth/master/TemplateHtaccess/.htaccess) in the root directory of Piwik, and set the path to your .htpasswd file
 * When you go to Piwik, you will see the Authentication window.
   Congratulations! You are now using HTTP Auth to protect Piwik.
 
