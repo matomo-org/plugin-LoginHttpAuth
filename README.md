@@ -1,5 +1,7 @@
 # Piwik LoginHttpAuth Plugin
 
+[![Build Status](https://travis-ci.org/piwik/plugin-LoginHttpAuth.svg?branch=master)](https://travis-ci.org/piwik/plugin-LoginHttpAuth)
+
 ## Description
 
 This plugin extends the standard Piwik authentication to use Basic HTTP Authentication.
