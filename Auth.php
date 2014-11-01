@@ -10,6 +10,7 @@ namespace Piwik\Plugins\LoginHttpAuth;
 
 use Piwik\AuthResult;
 use Piwik\DB;
+use Piwik\Piwik;
 use Piwik\Plugins\Login;
 use Piwik\Plugins\UsersManager\Model;
 
@@ -33,11 +34,13 @@ class Auth extends \Piwik\Plugins\Login\Auth
     public function authenticate()
     {
         $httpLogin = $this->getHttpAuthLogin();
+        Piwik::postEvent('HttpAuth.modifyAuthParams', array(&$httpLogin, &$this));
+
         if (!empty($httpLogin)) {
             $model = new Model();
-            $user  = $model->getUser($httpLogin);
+            $user = $model->getUser($httpLogin);
 
-            if(empty($user)) {
+            if (empty($user)) {
                 return new AuthResult(AuthResult::FAILURE, $httpLogin, null);
             }
 
