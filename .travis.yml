@@ -45,7 +45,17 @@ install:
   - git clone https://github.com/piwik/piwik.git piwik
   - cd piwik
   - git fetch --all
-  - ./tests/travis/checkout_test_against_branch.sh
+  - | 
+    if [ "$TEST_AGAINST_PIWIK_BRANCH" == "" ]; then
+        if [ "$TEST_AGAINST_CORE" == "latest_stable" ]; then
+            export TEST_AGAINST_PIWIK_BRANCH=$(git describe --tags `git rev-list --tags --max-count=1`)
+            export TEST_AGAINST_PIWIK_BRANCH=`echo $TEST_AGAINST_PIWIK_BRANCH | tr -d ' ' | tr -d '\n'`
+        else
+            export TEST_AGAINST_PIWIK_BRANCH=master
+        fi
+    fi
+  - echo "Testing against '$TEST_AGAINST_PIWIK_BRANCH'"
+  - git checkout "$TEST_AGAINST_PIWIK_BRANCH"
   - git submodule init
   - git submodule update || true
   # move plugin contents to folder in the plugins subdirectory
@@ -100,8 +110,8 @@ before_script:
 
   # Make sure we use Python 2.6
   - travis_retry sudo add-apt-repository ppa:fkrull/deadsnakes -y
-  - travis_retry sudo apt-get update
-  - travis_retry sudo apt-get install python2.6 python2.6-dev -y --force-yes
+  - travis_retry sudo apt-get update > /dev/null
+  - travis_retry sudo apt-get install python2.6 python2.6-dev -y --force-yes > /dev/null
 
   # Log Analytics works with Python 2.6 or 2.7 but we want to test on 2.6
   - python2.6 --version
