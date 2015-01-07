@@ -16,6 +16,25 @@ use Piwik\Plugins\UsersManager\Model;
 class Auth extends \Piwik\Plugins\Login\Auth
 {
     /**
+     * @var Model
+     */
+    private $userModel;
+
+    /**
+     * Constructor.
+     *
+     * @param Model|null $userModel
+     */
+    public function __construct(Model $userModel = null)
+    {
+        if ($userModel === null) {
+            $userModel = new Model();
+        }
+
+        $this->userModel = $userModel;
+    }
+
+    /**
      * Authentication module's name
      *
      * @return string
@@ -34,8 +53,7 @@ class Auth extends \Piwik\Plugins\Login\Auth
     {
         $httpLogin = $this->getHttpAuthLogin();
         if (!empty($httpLogin)) {
-            $model = new Model();
-            $user  = $model->getUser($httpLogin);
+            $user = $this->userModel->getUser($httpLogin);
 
             if(empty($user)) {
                 return new AuthResult(AuthResult::FAILURE, $httpLogin, null);
