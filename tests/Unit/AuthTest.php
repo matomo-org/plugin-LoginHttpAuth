@@ -101,7 +101,7 @@ class AuthTest extends \PHPUnit_Framework_TestCase
         $mock->expects($this->any())->method('getUser')->will($this->returnCallback(function ($login) {
             if ($login == AuthTest::TEST_USER) {
                 return AuthTest::$terryUserDetails;
-            } else if ($login == self::TEST_SUPERUSER) {
+            } else if ($login == AuthTest::TEST_SUPERUSER) {
                 return AuthTest::$gordonUserDetails;
             } else {
                 return null;
