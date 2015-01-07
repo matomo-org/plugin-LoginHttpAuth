@@ -19,13 +19,13 @@ class AuthTest extends \PHPUnit_Framework_TestCase
     const TEST_USER = "terrymcginnis";
     const TEST_SUPERUSER = 'barbaragordon';
 
-    private static $terryUserDetails = array(
+    public static $terryUserDetails = array(
         'login' => self::TEST_USER,
         'token_auth' => 'terrys token auth',
         'superuser_access' => 0
     );
 
-    private static $gordonUserDetails = array(
+    public static $gordonUserDetails = array(
         'login' => self::TEST_SUPERUSER,
         'token_auth' => 'commissioners token auth',
         'superuser_access' => 1
