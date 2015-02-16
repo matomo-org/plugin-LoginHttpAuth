@@ -9,6 +9,7 @@
 namespace Piwik\Plugins\LoginHttpAuth;
 
 use Exception;
+use Piwik\Container\StaticContainer;
 use Piwik\Plugin\Manager;
 use Piwik\Plugins\Login\Login;
 
@@ -46,7 +47,7 @@ class LoginHttpAuth extends \Piwik\Plugin
     public function initAuthenticationObject($activateCookieAuth = false)
     {
         $auth = new Auth();
-        \Piwik\Registry::set('auth', $auth);
+        StaticContainer::getContainer()->set('Piwik\Auth', $auth);
 
         $login = new Login();
         return $login->initAuthenticationFromCookie($auth, $activateCookieAuth);

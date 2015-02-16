@@ -1,9 +1,9 @@
 {
     "name": "LoginHttpAuth",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Sign in Piwik using HTTP Auth protocol instead of the standard Login mechanism.",
     "require": {
-        "piwik": ">=2.9.1"
+        "piwik": ">=2.11.0-b5"
     },
     "authors": [
         {
