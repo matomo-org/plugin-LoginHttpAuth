@@ -15,19 +15,22 @@ env:
   global:
     - PLUGIN_NAME=LoginHttpAuth
     - PIWIK_ROOT_DIR=$TRAVIS_BUILD_DIR/piwik
+    - PIWIK_LATEST_STABLE_TEST_TARGET=2.14.1
     - secure: "raplCvqQ9NUqBnarkxWMuFRvvNgA1Ucej6kLiBgL70h8SsbBr+hXo58Vmf2l7ph5yCNH1crimkB7Wj0oYXOEusCaQBoOrgAzkp0FJJXI8opBV+hubNVGKYaG9Hhn+H/SLuP6lKEShY0dcw5iR3jYPQEGqj0SF5YwbE9s0GbfqQo="
     - secure: "PJuO6L2OhAiBV6lxeZfZ3ax1E7IVK1UpzMacdDnq8r0nFoTYKnqwH0hpjmpiSvnpdjk6jenJVg5pIg828azoWK4ZQXDzA1rGikZUEzQEYTGSo2KCrEw/RZmBc8mXbnH4du/wCIH/J/P9ImqW4gk7etB83BES6v49c3peXB1uTek="
   matrix:
-    - TEST_SUITE=PluginTests MYSQL_ADAPTER=PDO_MYSQL
+    - TEST_SUITE=PluginTests MYSQL_ADAPTER=PDO_MYSQL TEST_AGAINST_PIWIK_BRANCH=$PIWIK_LATEST_STABLE_TEST_TARGET
+    - TEST_SUITE=UITests MYSQL_ADAPTER=PDO_MYSQL TEST_AGAINST_PIWIK_BRANCH=$PIWIK_LATEST_STABLE_TEST_TARGET
     - TEST_SUITE=PluginTests MYSQL_ADAPTER=PDO_MYSQL TEST_AGAINST_CORE=minimum_required_piwik
 
 matrix:
   exclude:
-    # execute latest stable tests only w/ PHP 5.5
+    # execute latest stable tests only w/ PHP 5.6
     - php: 5.3.3
       env: TEST_SUITE=PluginTests MYSQL_ADAPTER=PDO_MYSQL TEST_AGAINST_CORE=minimum_required_piwik
-    - php: 5.4
-      env: TEST_SUITE=PluginTests MYSQL_ADAPTER=PDO_MYSQL TEST_AGAINST_CORE=minimum_required_piwik
+    # execute UI tests only w/ PHP 5.6
+    - php: 5.3.3
+      env: TEST_SUITE=UITests MYSQL_ADAPTER=PDO_MYSQL TEST_AGAINST_PIWIK_BRANCH=$PIWIK_LATEST_STABLE_TEST_TARGET
 
 sudo: required
 
