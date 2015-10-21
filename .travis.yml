@@ -15,7 +15,7 @@ env:
   global:
     - PLUGIN_NAME=LoginHttpAuth
     - PIWIK_ROOT_DIR=$TRAVIS_BUILD_DIR/piwik
-    - PIWIK_LATEST_STABLE_TEST_TARGET=2.14.1
+    - PIWIK_LATEST_STABLE_TEST_TARGET=2.15.0-rc4
     - secure: "raplCvqQ9NUqBnarkxWMuFRvvNgA1Ucej6kLiBgL70h8SsbBr+hXo58Vmf2l7ph5yCNH1crimkB7Wj0oYXOEusCaQBoOrgAzkp0FJJXI8opBV+hubNVGKYaG9Hhn+H/SLuP6lKEShY0dcw5iR3jYPQEGqj0SF5YwbE9s0GbfqQo="
     - secure: "PJuO6L2OhAiBV6lxeZfZ3ax1E7IVK1UpzMacdDnq8r0nFoTYKnqwH0hpjmpiSvnpdjk6jenJVg5pIg828azoWK4ZQXDzA1rGikZUEzQEYTGSo2KCrEw/RZmBc8mXbnH4du/wCIH/J/P9ImqW4gk7etB83BES6v49c3peXB1uTek="
   matrix:
