@@ -27,6 +27,7 @@ class Auth extends \Piwik\Plugins\Login\Auth
      */
     public function __construct(Model $userModel = null)
     {
+        parent::__construct();
         if ($userModel === null) {
             $userModel = new Model();
         }
