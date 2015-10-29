@@ -71,4 +71,26 @@ class AuthTest extends IntegrationTestCase
 
         $this->assertEquals(AuthResult::SUCCESS_SUPERUSER_AUTH_CODE, $result->getCode());
     }
+
+    public function test_Auth_DelegatesToLoginAuth_WhenHttpServerDidntAuthenticate_AuthenticatingByPassword()
+    {
+        unset($_SERVER['PHP_AUTH_USER']);
+
+        $this->auth->setLogin(self::TEST_USER);
+        $this->auth->setPassword('anotherparttimer');
+        $result = $this->auth->authenticate();
+
+        $this->assertEquals(AuthResult::SUCCESS, $result->getCode());
+    }
+
+    public function test_Auth_DelegatesToLoginAuth_WhenHttpServerDidntAuthenticate_AuthenticatingByTokenAuth()
+    {
+        unset($_SERVER['PHP_AUTH_USER']);
+
+        $this->auth->setLogin(self::TEST_USER);
+        $this->auth->setTokenAuth(UsersManagerAPI::getInstance()->getTokenAuth(self::TEST_USER, md5('anotherparttimer')));
+        $result = $this->auth->authenticate();
+
+        $this->assertEquals(AuthResult::SUCCESS, $result->getCode());
+    }
 }

@@ -13,12 +13,17 @@ use Piwik\DB;
 use Piwik\Plugins\Login;
 use Piwik\Plugins\UsersManager\Model;
 
-class Auth extends \Piwik\Plugins\Login\Auth
+class Auth implements \Piwik\Auth
 {
     /**
      * @var Model
      */
     private $userModel;
+
+    /**
+     * @var Auth
+     */
+    private $fallbackAuth;
 
     /**
      * Constructor.
@@ -32,6 +37,7 @@ class Auth extends \Piwik\Plugins\Login\Auth
         }
 
         $this->userModel = $userModel;
+        $this->fallbackAuth = new \Piwik\Plugins\Login\Auth();
     }
 
     /**
@@ -63,7 +69,7 @@ class Auth extends \Piwik\Plugins\Login\Auth
             return new AuthResult($code, $httpLogin, $user['token_auth']);
 
         }
-        return parent::authenticate();
+        return $this->fallbackAuth->authenticate();
     }
 
     protected function getHttpAuthLogin()
@@ -79,6 +85,36 @@ class Auth extends \Piwik\Plugins\Login\Auth
             $httpLogin = $_ENV['REDIRECT_REMOTE_USER'];
         }
         return $httpLogin;
+    }
+
+    public function setTokenAuth($token_auth)
+    {
+        $this->fallbackAuth->setTokenAuth($token_auth);
+    }
+
+    public function getLogin()
+    {
+        $this->fallbackAuth->getLogin();
+    }
+
+    public function getTokenAuthSecret()
+    {
+        return $this->fallbackAuth->getTokenAuthSecret();
+    }
+
+    public function setLogin($login)
+    {
+        $this->fallbackAuth->setLogin($login);
+    }
+
+    public function setPassword($password)
+    {
+        $this->fallbackAuth->setPassword($password);
+    }
+
+    public function setPasswordHash($passwordHash)
+    {
+        $this->fallbackAuth->setPasswordHash($passwordHash);
     }
 }
 
