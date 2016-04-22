@@ -77,6 +77,8 @@ class Auth implements \Piwik\Auth
         $httpLogin = false;
         if (isset($_SERVER['PHP_AUTH_USER'])) {
             $httpLogin = $_SERVER['PHP_AUTH_USER'];
+        } elseif (isset($_SERVER['HTTP_AUTH_USER'])) {
+           $httpLogin = $_SERVER['HTTP_AUTH_USER'];
         } elseif (isset($_ENV['AUTH_USER'])) {
             $httpLogin = $_ENV['AUTH_USER'];
         } elseif (isset($_ENV['REMOTE_USER'])) {
