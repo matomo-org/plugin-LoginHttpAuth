@@ -12,6 +12,11 @@
             "homepage": "http://piwik.org"
         }
     ],
+    "support": {
+        "issues": "https://github.com/piwik/plugin-LoginHttpAuth/issues",
+        "forum": "https://forum.piwik.org",
+        "source": "https://github.com/piwik/plugin-LoginHttpAuth"
+    },
     "license": "GPL v3+",
     "keywords": ["authentication", "httpAuth", "login"],
     "homepage": "http://plugins.piwik.org/LoginHttpAuth"
