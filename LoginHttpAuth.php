@@ -15,7 +15,7 @@ use Piwik\Plugins\Login\Login;
 
 class LoginHttpAuth extends \Piwik\Plugin
 {
-    public function getListHooksRegistered()
+    public function registerEvents()
     {
         return array(
             'Request.initAuthenticationObject' => 'initAuthenticationObject',
