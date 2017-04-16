@@ -9,6 +9,8 @@
 namespace Piwik\Plugins\LoginHttpAuth;
 
 use Piwik\View;
+use Piwik\Config;
+use Piwik\Url;
 
 class Controller extends \Piwik\Plugins\Login\Controller
 {
@@ -23,7 +25,14 @@ class Controller extends \Piwik\Plugins\Login\Controller
 
     public function logout()
     {
-        $view = new View('@LoginHttpAuth/logout');
-        return $view->render();
+        self::clearSession();
+
+        $logoutUrl = @Config::getInstance()->General['login_logout_url'];
+        if(empty($logoutUrl)) {
+            $view = new View('@LoginHttpAuth/logout');
+            return $view->render();
+        } else {
+            Url::redirectToUrl($logoutUrl);
+        }
     }
 }
