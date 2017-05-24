@@ -32,6 +32,7 @@ class Auth implements \Piwik\Auth
      */
     public function __construct(Model $userModel = null)
     {
+        parent::__construct();
         if ($userModel === null) {
             $userModel = new Model();
         }
