@@ -31,7 +31,10 @@ class PiwikAuthTest extends IntegrationTestCase
 
         $this->skipTestIfPiwikLessThan2_15_1();
 
+        Access::getInstance()->setSuperUserAccess(false);
         FrontController::getInstance()->init();
+        Access::getInstance()->setSuperUserAccess(true);
+
         Fixture::createWebsite('2012-01-01 00:00:00');
 
         // sanity checks
