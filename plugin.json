@@ -1,23 +1,23 @@
 {
     "name": "LoginHttpAuth",
-    "version": "3.0.0",
-    "description": "Sign in Piwik using HTTP Auth protocol instead of the standard Login mechanism.",
+    "version": "3.0.1",
+    "description": "Sign in Matomo using HTTP Auth protocol instead of the standard Login mechanism.",
     "require": {
         "piwik": ">=3.0.0-b1,<4.0.0-b1"
     },
     "authors": [
         {
-            "name": "Piwik",
-            "email": "hello@piwik.org",
-            "homepage": "http://piwik.org"
+            "name": "Matomo",
+            "email": "hello@matomo.org",
+            "homepage": "https://matomo.org"
         }
     ],
     "support": {
-        "issues": "https://github.com/piwik/plugin-LoginHttpAuth/issues",
-        "forum": "https://forum.piwik.org",
-        "source": "https://github.com/piwik/plugin-LoginHttpAuth"
+        "issues": "https://github.com/matomo-org/plugin-LoginHttpAuth/issues",
+        "forum": "https://forum.matomo.org",
+        "source": "https://github.com/matomo-org/plugin-LoginHttpAuth"
     },
     "license": "GPL v3+",
     "keywords": ["authentication", "httpAuth", "login"],
-    "homepage": "http://plugins.piwik.org/LoginHttpAuth"
+    "homepage": "https://plugins.matomo.org/LoginHttpAuth"
 }
