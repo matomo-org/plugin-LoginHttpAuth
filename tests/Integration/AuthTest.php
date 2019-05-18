@@ -10,6 +10,7 @@ namespace Piwik\Plugins\LoginHttpAuth\Test\Integration\AuthTest;
 use Piwik\AuthResult;
 use Piwik\Plugins\LoginHttpAuth\Auth;
 use Piwik\Plugins\UsersManager\API as UsersManagerAPI;
+use Piwik\Plugins\UsersManager\UserUpdater;
 use Piwik\Tests\Framework\TestCase\IntegrationTestCase;
 
 /**
@@ -35,7 +36,9 @@ class AuthTest extends IntegrationTestCase
 
         UsersManagerAPI::getInstance()->addUser(self::TEST_USER, 'anotherparttimer', 'terry.mcginnis@hamiltonhill.edu');
         UsersManagerAPI::getInstance()->addUser(self::TEST_SUPERUSER, 'streetballet', 'barbara.gordon@gotham.gov');
-        UsersManagerAPI::getInstance()->setSuperUserAccess(self::TEST_SUPERUSER, true);
+
+        $userUpdater = new UserUpdater();
+        $userUpdater->setSuperUserAccessWithoutCurrentPassword(self::TEST_SUPERUSER, true);
 
         $this->auth = new Auth();
 
