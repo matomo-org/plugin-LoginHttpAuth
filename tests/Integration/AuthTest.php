@@ -12,6 +12,7 @@ use Piwik\Plugins\LoginHttpAuth\Auth;
 use Piwik\Plugins\UsersManager\API as UsersManagerAPI;
 use Piwik\Plugins\UsersManager\UserUpdater;
 use Piwik\Tests\Framework\TestCase\IntegrationTestCase;
+use Piwik\Version;
 
 /**
  * @group LoginHttpAuth
@@ -37,8 +38,12 @@ class AuthTest extends IntegrationTestCase
         UsersManagerAPI::getInstance()->addUser(self::TEST_USER, 'anotherparttimer', 'terry.mcginnis@hamiltonhill.edu');
         UsersManagerAPI::getInstance()->addUser(self::TEST_SUPERUSER, 'streetballet', 'barbara.gordon@gotham.gov');
 
-        $userUpdater = new UserUpdater();
-        $userUpdater->setSuperUserAccessWithoutCurrentPassword(self::TEST_SUPERUSER, true);
+        if (version_compare(Version::VERSION, '3.10.0-b2', '<')) {
+            UsersManagerAPI::getInstance()->setSuperUserAccess(self::TEST_SUPERUSER, true);
+        } else {
+            $userUpdater = new UserUpdater();
+            $userUpdater->setSuperUserAccessWithoutCurrentPassword(self::TEST_SUPERUSER, true);
+        }
 
         $this->auth = new Auth();
 
