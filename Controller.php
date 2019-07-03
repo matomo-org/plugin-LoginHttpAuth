@@ -16,9 +16,13 @@ class Controller extends \Piwik\Plugins\Login\Controller
     {
         // Effectively log out of Http auth
         $settings = new SystemSettings('LoginHttpAuth');
-        header('WWW-Authenticate: Basic realm="'. $settings->authName->getValue() .'"');
-        header('HTTP/1.0 401 Unauthorized');
-        self::clearSession();
+        if (isset($_SERVER['HTTP_X_AUTH_USERNAME'])) {
+            // there is no way to log our session out so we do nothing
+        } else {
+            header('WWW-Authenticate: Basic realm="'. $settings->authName->getValue() .'"');
+            header('HTTP/1.0 401 Unauthorized');
+            self::clearSession();
+        } endif
     }
 
     public function logout()
