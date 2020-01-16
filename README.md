@@ -2,6 +2,10 @@
 
 [![Build Status](https://travis-ci.org/matomo-org/plugin-LoginHttpAuth.svg?branch=master)](https://travis-ci.org/matomo-org/plugin-LoginHttpAuth)
 
+## Support discontinued
+
+We are only supporting this plugin up to Matomo 3 and we will no longer support it as part of Matomo 4 due to little usage. If you are interested in maintaining this plugin and making it compatible with Matomo 4 please [get in touch](https://matomo.org/contact/).
+
 ## Description
 
 This plugin extends the standard Matomo authentication to use Basic HTTP Authentication.
